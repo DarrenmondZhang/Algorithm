@@ -1,6 +1,7 @@
 import random
 import numpy as np
 
+
 def selection_sort(sequence):
     """Pure implementation of the selection sort algorithm in Python
 
