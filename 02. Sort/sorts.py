@@ -1,5 +1,4 @@
 import random
-import numpy as np
 
 
 def selection_sort(sequence):
