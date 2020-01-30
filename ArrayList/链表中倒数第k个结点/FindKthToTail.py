@@ -12,20 +12,20 @@ def FindKthToTail(head, k):
     """
     # 边界条件： k 如果比链表长度大 ，直接返回None
     # K 如果小于链表长度，定义两个变量， 这两个变量中间间隔k
-    firstedPoint = head
-    secondPoint = head
+    right_node = head
+    left_node = head
 
     for i in range(k):
-        if firstedPoint == None:
+        if right_node is None:
             return None
-        firstedPoint = firstedPoint.next
+        right_node = right_node.next
 
-    while firstedPoint != None:
-        firstedPoint = firstedPoint.next
-        secondPoint = secondPoint.next
+    while right_node is not None:
+        right_node = right_node.next
+        left_node = left_node.next
 
-    print(secondPoint.val)
-    return secondPoint
+    print(left_node.val)
+    return left_node
 
 
 if __name__ == '__main__':
@@ -38,5 +38,5 @@ if __name__ == '__main__':
     l2.next = l3
     l3.next = l4
     l4.next = l5
-    FindKthToTail(l1, 3)
+    FindKthToTail(l1, 5)
 
