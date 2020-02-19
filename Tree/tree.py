@@ -56,7 +56,44 @@ def preOrder(root):
             tmpNode = tmpNode.left
 
         node = stack.pop()
+        # print(node.val)  # pop的过程就是中序遍历
         tmpNode = node.right
+
+
+def midOrder(root):
+    if root is None:
+        return None
+    stack = []  # 栈
+    tmpNode = root
+    while tmpNode or stack:
+        while tmpNode:
+            stack.append(tmpNode)
+            tmpNode = tmpNode.left
+
+        node = stack.pop()
+        print(node.val)  # pop的过程就是中序遍历
+        tmpNode = node.right
+
+
+def latOrder(root):
+    if root is None:
+        return None
+    stack = []  # 栈
+    tmpNode = root
+    while tmpNode or stack:
+        while tmpNode:
+            # print(tmpNode.val)
+            stack.append(tmpNode)
+            tmpNode = tmpNode.left
+
+        node = stack[-1]
+        tmpNode = node.right
+        if node.right is None:
+            node = stack.pop()
+            print(node.val)
+            while stack and node == stack[-1].right:
+                node = stack.pop()
+                print(node.val)
 
 
 # 对于深度优先： 先序遍历 中序遍历 后序遍历
@@ -85,4 +122,5 @@ if __name__ == '__main__':
     # latOrderRecusive(t1)
     # print('--' * 30)
 
-    preOrder(t1)
+    # preOrder(t1)
+    latOrder(t1)
