@@ -43,24 +43,30 @@ class Solution {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
 
-        for(int k = 0; k < nums.length - 2; k++){
+        for(int i = 0; i < nums.length - 2; i++){
             // nums[k]为非负数，就不能满足a+b+c=0了
-            if(nums[k] > 0) break;
+            if(nums[i] > 0) break;
             // 跳过计算过的数据，同时防止结果重复
-            if(k > 0 && nums[k] == nums[k - 1]){
+            if(i > 0 && nums[i] == nums[i - 1]) {
                 continue;
             }
-            int i = k + 1, j = nums.length - 1;
-            while(i < j){
-                int sum = nums[k] + nums[i] + nums[j];
+            int leftPoint = i + 1, rightPoint = nums.length - 1;
+            while(leftPoint < rightPoint){
+                int sum = nums[i] + nums[leftPoint] + nums[rightPoint];
                 if(sum < 0){
-                    while(i < j && nums[i] == nums[++i]);
+                    leftPoint++;
                 } else if (sum > 0) {
-                    while(i < j && nums[j] == nums[--j]);
+                    rightPoint--;
                 } else {
-                    res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[i], nums[j])));
-                    while(i < j && nums[i] == nums[++i]);
-                    while(i < j && nums[j] == nums[--j]);
+                    res.add(Arrays.asList(nums[i], nums[leftPoint], nums[rightPoint]));
+                    while (leftPoint < rightPoint && nums[leftPoint] == nums[leftPoint+1]) {
+                        leftPoint++;
+                    }
+                    while(leftPoint < rightPoint && nums[rightPoint] == nums[rightPoint-1]) {
+                        rightPoint--;
+                    }
+                    leftPoint++;
+                    rightPoint--;
                 }
             }
         }
