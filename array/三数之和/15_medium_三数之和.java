@@ -35,36 +35,38 @@
 
 // @lc code=start
 // a + b = -c 题目转化
-// 1. 暴力求解：三重循环，最外层循环为-target  O(n^3)
+// 1. 暴力求解：三重循环，最外层循环为 -target  O(n^3)
 // 2. hash表记录
 // 3. 双指针，左右下标 夹逼准则 ※
 class Solution {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> res = new ArrayList<>();
-        for (int k = 0; k < nums.length - 2; k++) {
-            if (nums[k] > 0) break;
-            if ((k > 0) && (nums[k] == nums[k-1])) continue;
+
+        for(int k = 0; k < nums.length - 2; k++){
+            // nums[k]为非负数，就不能满足a+b+c=0了
+            if(nums[k] > 0) break;
+            // 跳过计算过的数据，同时防止结果重复
+            if(k > 0 && nums[k] == nums[k - 1]){
+                continue;
+            }
             int i = k + 1, j = nums.length - 1;
-            while (i < j) {
+            while(i < j){
                 int sum = nums[k] + nums[i] + nums[j];
-                if (sum < 0) {
-                    while (i < j) {
-                        nums[i] = nums[++i];
-                    } 
+                if(sum < 0){
+                    while(i < j && nums[i] == nums[++i]);
                 } else if (sum > 0) {
-                    while (i < j) {
-                        nums[j] = nums[--j];
-                    }
+                    while(i < j && nums[j] == nums[--j]);
                 } else {
                     res.add(new ArrayList<Integer>(Arrays.asList(nums[k], nums[i], nums[j])));
-                    while (i < j && nums[i] == nums[++i]);
-                    while (i < j && nums[j] == nums[--j]);
+                    while(i < j && nums[i] == nums[++i]);
+                    while(i < j && nums[j] == nums[--j]);
                 }
             }
         }
         return res;
     }
 }
+
 // @lc code=end
 

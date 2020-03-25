@@ -36,6 +36,33 @@
 # @lc code=start
 class Solution:
     def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = []
+        nums.sort()
+        length = len(nums)
 
+        for i in range(length-2):
+            if nums[i] > 0:
+                break
+            
+            if i > 0 and nums[i] == nums[i-1]:
+                continue
+            
+            leftPoint, rightPoint = i + 1, length - 1
+            while leftPoint < rightPoint:
+                total = nums[i] + nums[leftPoint] + nums[rightPoint]
+                if total < 0:
+                    leftPoint += 1
+                elif total > 0:
+                    rightPoint -= 1
+                else:
+                    res.append([nums[i], nums[leftPoint], nums[rightPoint]])
+                    while leftPoint < rightPoint and nums[leftPoint] == nums[leftPoint+1]:
+                        leftPoint += 1
+                    while leftPoint < rightPoint and nums[rightPoint] == nums[rightPoint-1]:
+                        rightPoint -= 1
+                    leftPoint += 1
+                    rightPoint -= 1
+                    
+        return res  
 
 # @lc code=end
