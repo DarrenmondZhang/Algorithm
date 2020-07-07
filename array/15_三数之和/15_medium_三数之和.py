@@ -39,8 +39,10 @@ class Solution:
         res = []
         nums.sort()
         length = len(nums)
+        if (not nums or length<3):
+            return []
 
-        for i in range(length-2):
+        for i in range(length):
             if nums[i] > 0:
                 break
             

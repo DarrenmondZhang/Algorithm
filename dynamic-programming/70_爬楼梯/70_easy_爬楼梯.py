@@ -46,12 +46,12 @@ class Solution:
         # 2 : 0,2 / 1,1 -> f(1) + f(2)
         # 3 : 1,2 / 2,1 -> f(2) + f(3) 
         if (n<=2): return n
-        f1, f2, f3 = 1, 2, 3
+        f1, f2, temp = 1, 2, 0
         for i in range(3, n+1):
-            f3 = f1 + f2
+            temp = f1 + f2
             f1 = f2
-            f2 = f3
-        return f3
+            f2 = temp
+        return temp
 
 
 
