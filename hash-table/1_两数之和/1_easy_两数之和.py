@@ -38,7 +38,6 @@ class Solution:
                 return [temp_dict[nums[i]], i]
             else:   
                 temp_dict[target - nums[i]] = i
-
 Solution().twoSum([2, 7, 11, 15], 13)
         
 # @lc code=end

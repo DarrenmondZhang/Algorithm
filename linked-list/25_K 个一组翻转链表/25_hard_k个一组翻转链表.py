@@ -48,39 +48,35 @@
 #         self.next = None
 
 class Solution:
-    # 翻转一个子链表，并且返回新的头与尾
-    def reverse(self, head: ListNode, tail: ListNode):
-        prev = tail.next
-        p = head
-        while prev != tail:
-            nex = p.next
-            p.next = prev
-            prev = p
-            p = nex
-        return tail, head
-
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
-        hair = ListNode(0)
-        hair.next = head
-        pre = hair
+        dummy = ListNode(-1)
+        dummy.next = head
+        start = dummy
 
-        while head:
-            tail = pre
-            # 查看剩余部分长度是否大于等于 k
+        while start:
+            # 设置end结点，看是否够k个一组
+            end = start
             for i in range(k):
-                tail = tail.next
-                if not tail:
-                    return hair.next
-            nex = tail.next
-            head, tail = self.reverse(head, tail)
-            # 把子链表重新接回原链表
-            pre.next = head
-            tail.next = nex
-            pre = tail
-            head = tail.next
+                end = end.next
+                if not end:
+                    return dummy.next
+            
+            # swap node
+            swap_a = start.next
+            swap_b = swap_a.next
+            for i in range(k - 1):
+                temp = swap_b.next
+                swap_b.next = swap_a
+                swap_a = swap_b
+                swap_b = temp
+            temp = start.next
+            start.next = swap_a
+            temp.next = swap_b
+            start = temp
+        return dummy.next
         
-        return hair.next
 
 
+        
 # @lc code=end
 

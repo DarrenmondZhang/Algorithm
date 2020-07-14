@@ -36,21 +36,27 @@
 # @lc code=start
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        Area = 0
-        i, j = 0, len(height) - 1
-        while i < j:
-            if (height[i] < height[j]) :
-                minHeight = height[i]
-                i += 1
-                area = (j-i+1) * minHeight
-                Area = max(area, Area)
+        """求取最大面积区域
+        Args:
+            height: a list with height
+        Returns:
+            The maxArea
+        """
+        # 双指针解法
+        max_area = 0
+        leftPointer, rightPointer = 0, len(height) - 1
+        while leftPointer < rightPointer:
+            if height[leftPointer] < height[rightPointer]:
+                area = height[leftPointer] * (rightPointer - leftPointer)
+                leftPointer += 1
+                max_area = max(area, max_area)
             else:
-                minHeight = height[j]
-                j -= 1
-                area = (j-i+1) * minHeight
-                Area = max(area, Area)
-        return Area
-
+                area = height[rightPointer] * (rightPointer - leftPointer)
+                rightPointer -= 1
+                max_area = max(area, max_area)
+        return max_area
+        
+       
 
 # @lc code=end
 
