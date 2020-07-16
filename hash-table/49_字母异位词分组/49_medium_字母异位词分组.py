@@ -42,11 +42,14 @@ class Solution:
         dict = {}
         for item in strs:
             key = tuple(sorted(item))
+            print(key)
+            print(dict)
             if key not in dict:
                 dict[key] = [item]
             else:
                 dict[key].append(item)
             # dict[key] = dict.get(key, []) + [item]
+        print(dict)
         return list(dict.values())  # 快一点
         # return sorted(d.values())
 

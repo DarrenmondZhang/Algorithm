@@ -30,14 +30,20 @@
 # @lc code=start
 class Solution:
     def twoSum(self, nums, target) :
-        if len(nums) <= 1:
+        if (len(nums)) <= 1:
             return False
-        temp_dict = {}
+        temp_dic = {}
         for i in range(len(nums)):
-            if nums[i] in temp_dict:
-                return [temp_dict[nums[i]], i]
-            else:   
-                temp_dict[target - nums[i]] = i
+            # if nums[i] in temp_dic:
+            #     return [temp_dic[nums[i]], i]
+            # else:
+            #     temp_dic[target - nums[i]] = i
+            if (target - nums[i]) not in temp_dic:
+                temp_dic[nums[i]] = i
+            else:
+                print([temp_dic[target-nums[i]], i] )
+                return [nums[i], i] 
+
 Solution().twoSum([2, 7, 11, 15], 13)
         
 # @lc code=end

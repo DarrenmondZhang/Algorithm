@@ -38,20 +38,21 @@
 class Solution:
     def isAnagram(self, s: str, t: str) -> bool:
         # 1. 暴力算法-> sort, sorted_str() 相等？ o(nlogn)
-        return sorted(s) == sorted(t) 
+        # return sorted(s) == sorted(t) 
 
         # 2. hash map -> 统计每个字符的频次
-        # if (len(s) != len(t)):
-        #     return False
-        # hash_dict = {}
-        # for item in s:
-        #     hash_dict[item] = hash_dict.get(item, 0) + 1
-        # for item in t:
-        #     hash_dict[item] = hash_dict.get(item, 0) - 1
+        if (len(s) != len(t)):
+            return False
+        hash_dict = {}
+        for item in s:
+            hash_dict[item] = hash_dict.get(item, 0) + 1
+        for item in t:
+            hash_dict[item] = hash_dict.get(item, 0) - 1
 
-        # for i in hash_dict:
-        #     if hash_dict[i] != 0:
-        #         return False
-        # return True
+        for i in hash_dict:
+            if hash_dict[i] != 0:
+                return False
+        return True
 # @lc code=end
 
+Solution().isAnagram("anagram", "nagaram")
