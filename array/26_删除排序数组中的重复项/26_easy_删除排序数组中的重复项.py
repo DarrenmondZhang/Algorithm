@@ -60,7 +60,7 @@
 
 # @lc code=start
 class Solution:
-    def removeDuplicates(self, nums: List[int]) -> int:
+    def removeDuplicates(self, nums):
         if not nums: return 0
 
         i = 0
@@ -70,5 +70,6 @@ class Solution:
                 nums[i] = nums[j]
         return i + 1
 
+Solution().removeDuplicates([1,1,2])
 # @lc code=end
 
