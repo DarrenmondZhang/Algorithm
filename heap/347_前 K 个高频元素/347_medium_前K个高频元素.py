@@ -44,5 +44,26 @@
 # @lc code=start
 class Solution:
     def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        # dic = Counter(nums)
+        # queue, res = [], []
+        # for i in dic:
+        #     heapq.heappush(queue, (-dic[i], i))
+        # for i in range(k):
+        #     tmp = heapq.heappop(queue)
+        #     res.append(tmp[1])
+        # return res
+
+        res = []
+        dic = {}
+        for num in nums:
+            if num not in dic:
+                dic[num] = 1
+            else:
+                dic[num] += 1
+        max_heap = [(-val, key) for key, val in dic.items()]
+        heapq.heapify(max_heap)
+        for i in range(k):
+            res.append(heapq.heappop(max_heap)[1])
+        return res
 # @lc code=end
 
