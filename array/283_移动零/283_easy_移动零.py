@@ -31,7 +31,7 @@
 
 # @lc code=start
 class Solution:
-    def moveZeroes(self, nums: List[int]) -> None:
+    def moveZeroes(self, nums):
         """
         Do not return anything, modify nums in-place instead.
         """
@@ -51,6 +51,7 @@ class Solution:
             if nums[i] != 0:
                 nums[i], nums[j] = nums[j], nums[i]
                 j += 1
-        
+
+Solution().moveZeroes([0,1,0,3,12])
 # @lc code=end
 

@@ -46,6 +46,7 @@ class Solution:
             if nums[i] > 0:
                 break
             
+            # 需要和上一次枚举的数不相同，去掉重复情况
             if i > 0 and nums[i] == nums[i-1]:
                 continue
             
@@ -58,10 +59,8 @@ class Solution:
                     rightPoint -= 1
                 else:
                     res.append([nums[i], nums[leftPoint], nums[rightPoint]])
-                    while leftPoint < rightPoint and nums[leftPoint] == nums[leftPoint+1]:
-                        leftPoint += 1
-                    while leftPoint < rightPoint and nums[rightPoint] == nums[rightPoint-1]:
-                        rightPoint -= 1
+                    while leftPoint < rightPoint and nums[leftPoint] == nums[leftPoint+1]: leftPoint += 1  # 去重
+                    while leftPoint < rightPoint and nums[rightPoint] == nums[rightPoint-1]: rightPoint -= 1  # 去重
                     leftPoint += 1
                     rightPoint -= 1
                     
