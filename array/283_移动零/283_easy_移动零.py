@@ -40,6 +40,7 @@ class Solution:
         """
         if not nums:
             return 0
+
         """ O(N^2)
         for i in range(len(nums)):
             if nums[i] == 0 :
@@ -58,7 +59,7 @@ class Solution:
                 j += 1
         """
         
-        """ O(N)
+        """O(N)
         # 第一次遍历，j指针记录非零个数，只要是非0的统统赋值给nums[j]
         j = 0
         for i in range(len(nums)) :

@@ -34,8 +34,8 @@
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        leftNode = None;
-        midNode = head;
+        leftNode = None
+        midNode = head
         while midNode :
             rightNode = midNode.next
             midNode.next = leftNode

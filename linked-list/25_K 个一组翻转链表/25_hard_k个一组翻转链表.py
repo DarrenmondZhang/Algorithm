@@ -47,6 +47,7 @@
 #         self.val = x
 #         self.next = None
 
+
 class Solution:
     def reverseKGroup(self, head: ListNode, k: int) -> ListNode:
         dummy = ListNode(-1)
@@ -76,7 +77,6 @@ class Solution:
         return dummy.next
         
 
-
-        
+Solution().reverseKGroup([1,2,3,4,5], 2)     
 # @lc code=end
 
